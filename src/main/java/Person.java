@@ -28,7 +28,8 @@ public class Person {
 
 
     public OptionalInt getAge() {
-        return OptionalInt.empty();
+
+        return  getAge();
     }
 
     public void happyBirthday() {

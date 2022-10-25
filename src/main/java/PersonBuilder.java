@@ -23,6 +23,9 @@ public class PersonBuilder {
     }
 
     public PersonBuilder setAge(int age) {
+        if (this.age != null && (this.age < 0 || this.age > 120)) {
+            throw new IllegalArgumentException("Некорректный возраст");
+        }
         this.age = age;
         return this;
     }
@@ -34,14 +37,12 @@ public class PersonBuilder {
 
     public Person build() {
         if (this.name == null) {
-            throw new IllegalArgumentException("Имя должно быть заполнено");
+            throw new IllegalStateException("Имя должно быть заполнено");
         }
         if (this.surname == null) {
-            throw new IllegalArgumentException("Фамилия должна быть заполнена");
+            throw new IllegalStateException("Фамилия должна быть заполнена");
         }
-        if (this.age != null && (this.age < 0 || this.age > 120)) {
-            throw new IllegalArgumentException("Некорректный возраст");
-        }
+
         return new Person(name, surname, age, address);
     }
 
